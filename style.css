@@ -1,0 +1,60 @@
+/* Base */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+}
+
+/* Campaign rows */
+.campaign-row:nth-child(odd) {
+  background-color: rgba(243, 244, 246, 0.7);
+}
+
+/* Timeline cells */
+.timeline-cell {
+  min-width: 120px;
+  height: 100%;
+  border-right: 1px dashed #cbd5e1;
+}
+
+/* Content cards */
+.content-card {
+  position: absolute;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: grab;
+  z-index: 10;
+  min-width: 120px;
+  max-width: 240px;
+}
+.content-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.content-card.email   { background-color: #dbeafe; border-left: 4px solid #3b82f6; }
+.content-card.social  { background-color: #fae8ff; border-left: 4px solid #d946ef; }
+.content-card.blog    { background-color: #dcfce7; border-left: 4px solid #22c55e; }
+.content-card.event   { background-color: #ffedd5; border-left: 4px solid #f97316; }
+.content-card.dragging { opacity: 0.8; cursor: grabbing; }
+
+/* Connectors */
+.connector           { position: absolute; background-color: #94a3b8; z-index: 5; }
+.connector-handle    { position: absolute; width: 10px; height: 10px; background-color: #94a3b8; border-radius: 50%; z-index: 6; cursor: pointer; }
+.connector-handle:hover { background-color: #64748b; }
+
+/* Status pills */
+.status-draft     { background-color: #e2e8f0; }
+.status-scheduled { background-color: #bae6fd; }
+.status-sent      { background-color: #bbf7d0; }
+
+/* Sticky headers */
+.month-header { position: sticky; top: 0; background-color: #f8fafc; z-index: 20; }
+.campaign-name { position: sticky; left: 0; background-color: #f8fafc; z-index: 15; }
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar { height: 8px; width: 8px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Modal backdrop */
+.modal { background-color: rgba(0,0,0,0.5); }

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marketing Campaign Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 shadow-md">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Marketing Campaign Planner</h1>
+        <div class="flex space-x-3">
+          <button id="add-campaign-btn" class="bg-white text-indigo-600 px-4 py-2 rounded-md font-medium hover:bg-indigo-50 transition">
+            <i class="fas fa-plus mr-2"></i>Add Campaign
+          </button>
+          <button id="export-btn" class="bg-indigo-700 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-800 transition">
+            <i class="fas fa-download mr-2"></i>Export
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-6">
+      <div class="container mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <!-- Toolbar -->
+        <div class="bg-gray-50 border-b border-gray-200 p-4 flex justify-between items-center">
+          <div class="flex space-x-2">
+            <button id="add-email-btn" class="flex items-center bg-blue-100 text-blue-700 px-3 py-2 rounded hover:bg-blue-200 transition">
+              <i class="fas fa-envelope mr-2"></i>Email
+            </button>
+            <button id="add-social-btn" class="flex items-center bg-purple-100 text-purple-700 px-3 py-2 rounded hover:bg-purple-200 transition">
+              <i class="fas fa-hashtag mr-2"></i>Social
+            </button>
+            <button id="add-blog-btn" class="flex items-center bg-green-100 text-green-700 px-3 py-2 rounded hover:bg-green-200 transition">
+              <i class="fas fa-pen-fancy mr-2"></i>Blog
+            </button>
+            <button id="add-event-btn" class="flex items-center bg-orange-100 text-orange-700 px-3 py-2 rounded hover:bg-orange-200 transition">
+              <i class="fas fa-calendar-alt mr-2"></i>Event
+            </button>
+            <button id="add-connector-btn" class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded hover:bg-gray-200 transition">
+              <i class="fas fa-project-diagram mr-2"></i>Connect
+            </button>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <input type="text" id="search-input" placeholder="Search..." class="pl-8 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
+              <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </div>
+            <select id="status-filter" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+              <option value="all">All statuses</option>
+              <option value="draft">Draft</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="sent">Sent</option>
+            </select>
+            <div class="flex items-center space-x-2">
+              <div class="font-medium text-sm text-gray-700">Content types:</div>
+              <div class="flex space-x-2">
+                <label class="inline-flex items-center">
+                  <input type="checkbox" id="filter-email" class="content-type-filter form-checkbox h-4 w-4 text-blue-600" value="email" checked/>
+                  <span class="ml-1 text-sm text-gray-700">Email</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" id="filter-social" class="content-type-filter form-checkbox h-4 w-4 text-purple-600" value="social" checked/>
+                  <span class="ml-1 text-sm text-gray-700">Social</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" id="filter-blog" class="content-type-filter form-checkbox h-4 w-4 text-green-600" value="blog" checked/>
+                  <span class="ml-1 text-sm text-gray-700">Blog</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input type="checkbox" id="filter-event" class="content-type-filter form-checkbox h-4 w-4 text-orange-600" value="event" checked/>
+                  <span class="ml-1 text-sm text-gray-700">Event</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Header & Content -->
+        <div class="overflow-x-auto custom-scrollbar">
+          <div class="flex">
+            <div class="campaign-name w-64 min-w-[16rem] border-r border-gray-200 bg-gray-50 z-20"></div>
+            <div class="flex month-header">
+              
+              <!-- January -->
+              <div class="flex flex-col">
+                <div class="h-10 bg-gray-50 border-b border-gray-200 flex items-center justify-center font-semibold text-gray-700 px-4" style="width: 480px;">January</div>
+                <div class="flex">
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 1</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 2</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 3</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 4</div>
+                </div>
+              </div>
+              
+              <!-- February -->
+              <div class="flex flex-col">
+                <div class="h-10 bg-gray-50 border-b border-gray-200 flex items-center justify-center font-semibold text-gray-700 px-4" style="width: 480px;">February</div>
+                <div class="flex">
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 1</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 2</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 3</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 4</div>
+                </div>
+              </div>
+              
+              <!-- March -->
+              <div class="flex flex-col">
+                <div class="h-10 bg-gray-50 border-b border-gray-200 flex items-center justify-center font-semibold text-gray-700 px-4" style="width: 480px;">March</div>
+                <div class="flex">
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 1</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 2</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 3</div>
+                  <div class="timeline-cell w-30 h-8 flex items-center justify-center text-xs text-gray-500 border-r border-gray-200">Week 4</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Dynamic timeline rows -->
+          <div id="timeline-container" class="relative"></div>
+
+          <!-- Empty state -->
+          <div id="empty-state" class="flex flex-col items-center justify-center py-16 px-4 text-center">
+            <div class="text-gray-400 mb-4"><i class="fas fa-calendar-alt text-5xl"></i></div>
+            <h3 class="text-xl font-medium text-gray-700 mb-2">No campaigns yet</h3>
+            <p class="text-gray-500 mb-6 max-w-md">Get started by adding your first marketing campaign using the "Add Campaign" button above.</p>
+            <button id="empty-add-campaign-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 transition">
+              <i class="fas fa-plus mr-2"></i>Add Your First Campaign
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Card Edit Modal -->
+  <div id="card-modal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-gray-900" id="modal-title">Edit Content Card</h3>
+        <button id="close-modal" class="text-gray-400 hover:text-gray-500"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="px-6 py-4">
+        <form id="card-form">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Campaign</label>
+            <select id="card-campaign" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+              <!-- Options populated dynamically -->
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+            <input type="text" id="card-title" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+            <select id="card-type" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+              <option value="email">Email</option>
+              <option value="social">Social Media</option>
+              <option value="blog">Blog Post</option>
+              <option value="event">Webinar/Event</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+            <input type="date" id="card-date" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Time</label>
+            <input type="time" id="card-time" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+            <select id="card-status" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+              <option value="draft">Draft</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="sent">Sent</option>
+            </select>
+          </div>
+          <div id="custom-fields-container" class="mb-4"><!-- custom fields --></div>
+          <div class="mb-4">
+            <button type="button" id="add-custom-field" class="text-indigo-600 hover:text-indigo-800 text-sm flex items-center">
+              <i class="fas fa-plus mr-1"></i>Add Custom Field
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="bg-gray-50 px-6 py-4 flex justify-between">
+        <div>
+          <button id="delete-card" class="text-red-600 hover:text-red-800 px-4 py-2 rounded"><i class="fas fa-trash mr-1"></i>Delete</button>
+          <button id="duplicate-card" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded"><i class="fas fa-copy mr-1"></i>Duplicate</button>
+        </div>
+        <button id="save-card" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaign Edit Modal -->
+  <div id="campaign-modal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-gray-900" id="campaign-modal-title">Add Campaign</h3>
+        <button id="close-campaign-modal" class="text-gray-400 hover:text-gray-500"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="px-6 py-4">
+        <form id="campaign-form">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Campaign Name</label>
+            <input type="text" id="campaign-name" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <textarea id="campaign-description" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" rows="3"></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+            <input type="date" id="campaign-start" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+            <input type="date" id="campaign-end" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Color</label>
+            <input type="color" id="campaign-color" class="w-full h-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="#6366f1"/>
+          </div>
+        </form>
+      </div>
+      <div class="bg-gray-50 px-6 py-4 flex justify-between">
+        <button id="delete-campaign" class="text-red-600 hover:text-red-800 px-4 py-2 rounded hidden"><i class="fas fa-trash mr-1"></i>Delete Campaign</button>
+        <button id="save-campaign" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save Campaign</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector Edit Modal -->
+  <div id="connector-modal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+      <div class="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-gray-900">Edit Connection</h3>
+        <button id="close-connector-modal" class="text-gray-400 hover:text-gray-500"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="px-6 py-4">
+        <form id="connector-form">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">From Card</label>
+            <select id="connector-start-card" class="w-full border border-gray-300 rounded-md px-3 py-2
+
